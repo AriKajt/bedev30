@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertWarningsToExceptions="true"
+         convertNoticesToExceptions="true"
+         stopOnFailure="false">
+    <!-- definiranje direktorija sa testovima koji će se izvoditi -->
+    <testsuites>
+        <!-- može se definirati i više od jednog direktorija/testsuitea (IAKO SE U ZADATKU TRAŽI SAMO JEDAN) -->
+        <testsuite name="Unit">
+            <directory>testing</directory>
+        </testsuite>
+    </testsuites>
+    <!-- definiranje koji direktoriji će biti uključeni tokom izvođenja testova (OVO NIJE DIO ZADATKA, ALI KAO PRIMJER!!!) -->
+    <source>
+        <include>
+            <directory>app</directory>
+        </include>
+        <!-- primjer isključivanja direktorija/filea iz provjere -->
+        <exclude>
+            <directory suffix=".php">app/Providers</directory> 
+            <file suffix=".php">app/Providers/AppServiceProvider.php</file>
+        </exclude>
+    </source>
+    <!-- za env varijable umjesto definiranja u phpunit.xml fileu možemo koristiti .env.testing file (TAKOĐER NIJE DIO ZADATKA SAMO STAVLJENO KAO PRIMJER) -->
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_MAINTENANCE_DRIVER" value="file"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_STORE" value="array"/> 
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_DATABASE" value="algebra"/>
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="PULSE_ENABLED" value="false"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+    </php>
+</phpunit>
